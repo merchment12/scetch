@@ -1,0 +1,64 @@
+.reference-project {margin:0 20px 24px;border:1px solid var(--border);border-radius:15px;background:var(--panel-soft);overflow:hidden}
+.reference-project-heading {display:flex;justify-content:space-between;align-items:center;gap:16px;padding:21px 21px 15px}
+.reference-project-heading .eyebrow {font-size:8px;letter-spacing:1.2px}
+.reference-project-heading h3 {font-size:20px;font-weight:550;letter-spacing:-.5px;margin:8px 0 0;line-height:1.4}
+.reference-project-badge {font-size:8px;color:var(--muted);border:1px solid var(--border);padding:5px 7px;border-radius:5px;white-space:nowrap}
+.project-view-tabs {display:flex;gap:5px;border-bottom:1px solid var(--border);padding:0 20px 13px}
+.project-view-tabs button {display:flex;align-items:center;gap:7px;padding:8px 11px;background:transparent;color:var(--muted);border:1px solid transparent;border-radius:7px;font-size:10px}
+.project-view-tabs button.active {border-color:var(--border);background:var(--panel);color:var(--accent)}
+.project-view-tabs svg {font-size:16px}
+.project-target {background:#faf9f5}
+.project-target>img {display:block;width:100%;height:auto;aspect-ratio:660/350;object-fit:contain}
+.project-target-caption {display:flex;gap:17px;padding:14px 20px 17px;border-top:1px solid #e5dfd4}
+.project-target-caption>.mono {font-size:7px;letter-spacing:.8px;color:#937582;white-space:nowrap;padding-top:4px}
+.project-target-caption>p {font-size:10px;line-height:1.8;color:#797078;margin:0}
+.project-milestones {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:0 18px}
+.project-milestones>button {min-width:0;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:6px;padding:15px 5px 11px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted);font-size:9px;line-height:1.6}
+.project-milestones>button>.mono {font-size:8px;color:var(--muted)}
+.project-milestones>button.active {color:var(--text);border-bottom-color:var(--accent)}
+.project-milestones>button.active>.mono {color:var(--accent)}
+.project-stage-explanation {margin:13px 21px 17px;font-size:10px;line-height:1.7;max-width:65ch}
+.car-volume {background:#f3f0e9;color:#4c434b;color-scheme:light}
+.car-orbit-presets {display:flex;flex-wrap:wrap;align-items:center;gap:5px;padding:12px 16px 0}
+.car-orbit-presets>button {font-size:9px;background:#ffffff80;color:#6e5968;border:1px solid #d8ced2;border-radius:6px;padding:7px 9px}
+.car-orbit-presets>button:hover,.car-orbit-presets>button.active {background:#e7dce1;border-color:#b79aa9}
+.car-orbit-presets>button:last-child {margin-left:auto}
+.car-volume-canvas {display:block;width:100%;height:auto;touch-action:none;cursor:grab;outline-offset:-4px}
+.car-volume-canvas:active {cursor:grabbing}
+.volume-front-label {fill:#aa6b88;font:8px 'IBM Plex Mono',monospace;letter-spacing:1px}
+.car-volume-tools {display:flex;gap:12px;justify-content:space-between;align-items:center;padding:0 16px 13px}
+.car-volume-tools>span {font-size:9px;line-height:1.7;color:#8d7d86;display:flex;align-items:center;gap:8px}
+.car-volume-tools>span>svg {font-size:17px;flex-shrink:0}
+.car-volume-tools>div {display:flex;gap:6px;flex-shrink:0}
+.car-volume-tools .icon-button {width:28px;height:28px;border-color:#d8ced2;color:#816676;background:#ffffff40}
+.car-volume-tools .icon-button>svg {font-size:14px}
+.volume-stage-label {display:flex;align-items:center;gap:8px;font-size:10px;padding:14px 17px;border-top:1px solid #dfd8cb;color:#7a6672}
+.volume-stage-label>svg {font-size:17px;flex-shrink:0}
+.volume-stage-label>select {margin-left:auto;max-width:65%;background:#fbf7f1;color:#75636f;border:1px solid #d4c8d0;border-radius:6px;padding:7px 9px;font-size:9px}
+.volume-note {font-size:9px;line-height:1.8;padding:0 17px 16px;margin:0;color:#8d7d84;max-width:80ch}
+@media(max-width:760px) {
+.reference-project {margin:0 12px 22px;border-radius:11px}
+.reference-project-heading {padding:17px 14px 13px;gap:9px;align-items:flex-start}
+.reference-project-heading .eyebrow {font-size:6px;letter-spacing:.8px}
+.reference-project-heading h3 {font-size:17px;letter-spacing:-.3px}
+.reference-project-badge {font-size:6px;line-height:1.6;padding:4px 5px}
+.project-view-tabs {padding:0 13px 12px}
+.project-view-tabs button {font-size:9px;padding:7px 9px}
+.project-target-caption {flex-direction:column;gap:6px;padding:12px 15px}
+.project-target-caption>.mono {font-size:6px;padding:0}
+.project-target-caption>p {font-size:9px}
+.project-milestones {padding:0 12px;grid-template-columns:1fr 1fr;gap:0 8px}
+.project-milestones>button {font-size:9px;padding:12px 3px 9px;gap:4px}
+.project-milestones>button>.mono {font-size:7px}
+.project-stage-explanation {font-size:9px;margin:12px 15px 15px}
+.car-orbit-presets {gap:4px;padding:10px 10px 0}
+.car-orbit-presets>button {font-size:7px;padding:6px 7px}
+.car-volume-tools {gap:7px;padding:0 11px 11px}
+.car-volume-tools>span {font-size:7px;gap:5px}
+.car-volume-tools>span>svg {font-size:14px}
+.car-volume-tools .icon-button {width:25px;height:25px}
+.car-volume-tools>div {gap:4px}
+.volume-stage-label {font-size:8px;gap:5px;padding:12px}
+.volume-stage-label>select {padding:6px;font-size:8px;max-width:60%}
+.volume-note {font-size:8px;padding:0 12px 13px}
+}

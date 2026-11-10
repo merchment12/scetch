@@ -1,0 +1,38 @@
+[
+  {
+    "id": "demo-coupe",
+    "title": "Спорткупе / финальный проект",
+    "lesson_id": "car",
+    "image_url": "/sketches/coupe.svg",
+    "description": "Учебная интерпретация присланного скетча: перед справа, длинный капот, низкая крыша, проработанные колёса и спокойный тон. Цель пятого урока.",
+    "author": "Учебный пример",
+    "kind": "example"
+  },
+  {
+    "id": "demo-city",
+    "title": "Городской электромобиль",
+    "lesson_id": "car",
+    "image_url": "/sketches/city.svg",
+    "description": "Короткие свесы и высокая кабина. Те же опорные элементы, другой сценарий использования.",
+    "author": "Учебный пример",
+    "kind": "example"
+  },
+  {
+    "id": "demo-volume",
+    "title": "Габарит перед деталями",
+    "lesson_id": "perspective",
+    "image_url": "/sketches/volume.svg",
+    "description": "Простой объём помогает задать направление кузова и положение колёс.",
+    "author": "Учебный пример",
+    "kind": "example"
+  },
+  {
+    "id": "demo-charge",
+    "title": "Зарядный модуль / форма",
+    "lesson_id": "form",
+    "image_url": "/sketches/charge.svg",
+    "description": "Поиск корпуса внутри базового объёма. Ось связывает разъём, шов и кнопку.",
+    "author": "Учебный пример",
+    "kind": "example"
+  }
+]
