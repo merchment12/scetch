@@ -10,6 +10,7 @@ function FilmScene({ film, playhead, poster, showDirections, closeup }) {
   const preview = useRef(null);
   const direction = useRef(null);
   const camera = useRef(null);
+  const movementLabel = useRef(null);
 
   useEffect(() => {
     const groups = [...scene.current.querySelectorAll('[data-film-stroke]')].map(group => {
@@ -48,6 +49,7 @@ function FilmScene({ film, playhead, poster, showDirections, closeup }) {
           if (!poster && active === action && action.d && !action.fill) activeGeometry = entry;
         }
         const moving = activeGeometry && showDirections;
+        movementLabel.current.textContent = !poster && active?.d ? (active.kind === 'ghost' ? 'РЕПЕТИЦИЯ НАД БУМАГОЙ · БЕЗ КАСАНИЯ' : 'ШТРИХ НА БУМАГЕ · ПОВТОРИ НА СВОЁМ ЛИСТЕ') : 'ПАУЗА · ПРОЧИТАЙ ПОЯСНЕНИЕ И ПОПРАКТИКУЙСЯ';
         cursor.current.style.opacity = moving ? '1' : '0';
         startPoint.current.style.opacity = moving ? '1' : '0';
         endPoint.current.style.opacity = moving ? '1' : '0';
@@ -59,6 +61,10 @@ function FilmScene({ film, playhead, poster, showDirections, closeup }) {
           try {
             const start = path.getPointAtLength(0);
             const end = path.getPointAtLength(length);
+            if (Math.hypot(end.x - start.x, end.y - start.y) < 16) {
+              startPoint.current.style.opacity = '0';
+              endPoint.current.style.opacity = '0';
+            }
             let tip = path.getPointAtLength(length * amount);
             const next = path.getPointAtLength(Math.min(length, length * amount + 14));
             const lead = Math.min(1.2, action.duration * .15);
@@ -102,6 +108,7 @@ function FilmScene({ film, playhead, poster, showDirections, closeup }) {
     <rect width="760" height="470" fill="#faf9f5" />
     <rect width="760" height="470" fill={`url(#${prefix}-grid)`} opacity=".65" />
     <text x="29" y="32" className="film-paper-label">TECHNO / SKETCHBOOK</text>
+    <text ref={movementLabel} x="380" y="416" textAnchor="middle" className="film-paper-label" />
     <text x="731" y="32" textAnchor="end" className="film-paper-label">FORM · PROPORTION · MOTION</text>
     <g transform="translate(50 60)"><g ref={camera} className="film-camera">
       {film.actions.map((action, index) => action.d && <g key={action.id} data-film-stroke={index} style={{ opacity: 0 }}>

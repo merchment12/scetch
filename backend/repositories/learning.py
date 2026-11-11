@@ -7,8 +7,8 @@ from backend.models import Progress
 
 class LessonRepository:
     def __init__(self):
-        self.lessons = json.loads((ROOT / "backend/data/lessons.json").read_text())
-        self.examples = json.loads((ROOT / "backend/data/examples.json").read_text())
+        self.lessons = json.loads((ROOT / "backend/data/lessons.json").read_text(encoding="utf-8"))
+        self.examples = json.loads((ROOT / "backend/data/examples.json").read_text(encoding="utf-8"))
 
     def get(self, lesson_id):
         lesson = next((item for item in self.lessons if item["id"] == lesson_id), None)

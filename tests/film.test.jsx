@@ -19,7 +19,7 @@ beforeEach(() => {
 });
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.unstubAllGlobals(); });
 
-it('provides a detailed continuous film for each of the five lessons', () => {
+it('provides a detailed continuous film for every lesson in the expanded course', () => {
   for (const lesson of lessons) {
     const film = films[lesson.id];
     expect(film.chapters).toHaveLength(4);
@@ -95,12 +95,13 @@ it('reveals strokes and moves the pencil to the same position after forward and 
 
 it('offers timecodes and keeps the diagram and transcript synchronized with the timeline', () => {
   const onStep = vi.fn();
-  render(<SketchPlayer lesson={lessons[4]} onStep={onStep} />);
+  const car = lessons.find(lesson => lesson.id === 'car');
+  render(<SketchPlayer lesson={car} onStep={onStep} />);
   const timeline = screen.getByRole('slider', { name: 'Таймлайн видеоурока' });
   expect(screen.getByRole('button', { name: 'Смотреть видеоурок' })).toBeTruthy();
   fireEvent.change(timeline, { target: { value: films.car.chapters[2].start + 3 } });
   expect(onStep).toHaveBeenLastCalledWith(2);
-  expect(screen.getByRole('heading', { name: lessons[4].steps[2].title })).toBeTruthy();
+  expect(screen.getByRole('heading', { name: car.steps[2].title })).toBeTruthy();
   expect(timeline.getAttribute('aria-valuetext')).toContain(formatTime(films.car.chapters[2].start + 3));
   fireEvent.click(screen.getByRole('button', { name: 'Повторить главу' }));
   expect(Number(timeline.value)).toBe(films.car.chapters[2].start);

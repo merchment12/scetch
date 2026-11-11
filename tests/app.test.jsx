@@ -39,17 +39,17 @@ describe('learning flow', () => {
     for (const checkbox of screen.getAllByRole('checkbox')) await user.click(checkbox);
     expect(complete.disabled).toBe(false);
     await user.click(complete);
-    await waitFor(() => expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).toBe('20'));
+    await waitFor(() => expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).toBe(String(Math.round(100 / lessons.length))));
     await waitFor(() => expect(stored.line?.completed).toBe(true));
     rendered.unmount();
     await openApp();
     expect(screen.getByText('Урок пройден')).toBeTruthy();
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).toBe('20');
+    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).toBe(String(Math.round(100 / lessons.length)));
   });
 
   it('switches lessons and saves their progress independently', async () => {
     const user = userEvent.setup(); await openApp();
-    await user.click(screen.getByRole('button', { name: /02.*Объём и перспектива/ }));
+    await user.click(screen.getByRole('button', { name: /Объём и перспектива/ }));
     await screen.findByRole('heading', { name: 'Геометрия и перспектива', level: 2 });
     await user.click(screen.getByRole('button', { name: /Следующий шаг/ }));
     await waitFor(() => expect(stored.perspective.seen_steps).toContain(1));

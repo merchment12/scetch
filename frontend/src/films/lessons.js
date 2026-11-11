@@ -1,3 +1,4 @@
+import { foundationFilms } from './foundations.js';
 import { illustrations } from '../illustrations.js';
 import { coupeChapters } from './coupe.js';
 
@@ -18,12 +19,12 @@ function drawGroup(id, group, captions) {
 const line = [
   [
     pause('Приготовь лист А4 и карандаш. Освободи место для предплечья и расслабь плечи.', 10),
-    stroke('M183 273L392 100L405 116L195 286Z', 'Держи карандаш чуть дальше от кончика: так проще контролировать длинное движение.', { style: 'light' }),
-    stroke('M183 273L174 295L195 286', 'Кончик легко касается бумаги. Не сжимай пальцы и не продавливай лист.'),
-    stroke('M291 213Q280 184 297 174Q308 169 318 183L333 202Q343 210 350 197L365 169Q372 160 381 168L411 209Q421 224 410 244L392 271Q380 290 351 291L292 291', 'Это условная схема хвата. Пальцы направляют карандаш, но не должны быть напряжены.', { style: 'light', duration: 10 }),
-    ghost('M130 225Q326 95 530 201', 'Сначала проведи движение в воздухе: от левой опорной точки к правой.'),
-    ghost('M130 225Q326 95 530 201', 'Повтори траекторию без касания. Подключай предплечье, а не только кисть.'),
-    ghost('M130 225Q326 95 530 201', 'Третья репетиция: плавно пройди вершину дуги и не останавливайся на середине.'),
+    pause('Хват выбирай удобный: пальцы не сжимают карандаш, плечи расслаблены. Здесь показываем только движение кончика, а не схему руки.', 10),
+    ghost('M140 180H510', 'НАД БУМАГОЙ: пройди от А к Б без касания. Пунктир — репетиция, он не остаётся на листе.'),
+    ghost('M140 180H510', 'Ещё раз повтори то же движение над листом. Двигай предплечьем, не выворачивай кисть.'),
+    stroke('M140 180H510', 'НА БУМАГЕ: теперь коснись листа и проведи одну прямую. Тёмная линия — результат.', { duration: 9 }),
+    stroke('M140 230H510', 'Следующую попытку делай на новой строке. Не обводи предыдущую линию.', { duration: 8 }),
+    stroke('M140 280H510', 'Повторяй спокойно. После серии оцени плавность, затем сделай короткую паузу.', { duration: 8 }),
     pause('Теперь останови ролик и проверь хват. Если рука напряжена, встряхни кисть и поверни лист.', 12),
   ],
   [
@@ -162,7 +163,7 @@ const form = [
   ],
 ];
 
-const definitions = { line, perspective, light, form, car: coupeChapters };
+const definitions = { line, ...foundationFilms, perspective, light, form, car: coupeChapters };
 
 export function compileFilm(chapterActions, resetEachChapter = false) {
   let cursor = 0;
@@ -178,7 +179,7 @@ export function compileFilm(chapterActions, resetEachChapter = false) {
   return { chapters, actions, duration: cursor, resetEachChapter };
 }
 
-export const films = Object.fromEntries(Object.entries(definitions).map(([id, chapters]) => [id, { ...compileFilm(chapters, id === 'line'), revision: id === 'car' ? 'reference-coupe-v1' : undefined }]));
+export const films = Object.fromEntries(Object.entries(definitions).map(([id, chapters]) => [id, { ...compileFilm(chapters, id === 'line' || id in foundationFilms), revision: id === 'car' ? 'reference-coupe-v1' : id === 'line' ? 'clear-line-v2' : 'foundations-v1' }]));
 
 export function chapterAt(film, time) {
   return Math.max(0, film.chapters.findLastIndex(chapter => time >= chapter.start));

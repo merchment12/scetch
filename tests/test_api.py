@@ -26,10 +26,11 @@ def upload(client, **extra):
     return client.post("/api/artworks", data={"title": "Первый профиль", "lesson_id": "car", "description": "Хочу улучшить пропорции", **extra}, files={"file": ("sketch.png", image_bytes(), "image/png")})
 
 
-def test_curriculum_has_five_complete_lessons(client):
+def test_curriculum_has_nine_complete_lessons(client):
     lessons = client.get("/api/lessons").json()
-    assert len(lessons) == 5
-    assert [l["number"] for l in lessons] == [1, 2, 3, 4, 5]
+    assert [l["id"] for l in lessons] == ["line", "planes", "ellipses", "perspective", "cylinders", "light", "form", "proportions", "car"]
+    assert [l["number"] for l in lessons] == list(range(1, 10))
+    assert all(l["repetitions"] for l in lessons)
     assert all(len(l["steps"]) == 4 and len(l["checks"]) == 3 for l in lessons)
     assert client.get("/api/lessons/missing").status_code == 404
 
